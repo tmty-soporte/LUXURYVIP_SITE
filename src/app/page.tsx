@@ -328,17 +328,17 @@ export default function Home() {
                 Operamos en sus <span className="text-[#a88231] font-medium">destinos clave:</span>
               </p>
 
-              <div className="grid grid-cols-2 gap-y-4 gap-x-4 md:gap-x-8 text-[18px] md:text-[20px] text-luxury-white font-light tracking-[0.1em] mb-12">
-                <div className="flex items-center gap-4 whitespace-nowrap"><span className="text-luxury-white text-base md:text-lg">✓</span> Ciudad de México</div>
-                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg">✓</span> Los Cabos</div>
-                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg">✓</span> Monterrey</div>
-                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg">✓</span> Tijuana</div>
-                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg">✓</span> Guadalajara</div>
-                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg">✓</span> Mazatlán</div>
-                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg">✓</span> Cancún</div>
-                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg">✓</span> San Diego</div>
-                <div className="flex items-center gap-4 whitespace-nowrap"><span className="text-luxury-white text-base md:text-lg">✓</span> Puerto Vallarta</div>
-                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg">✓</span> Los Ángeles</div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-5 sm:gap-y-4 gap-x-4 md:gap-x-8 text-[18px] md:text-[20px] text-luxury-white font-light tracking-[0.1em] mb-12">
+                <div className="flex items-center gap-4 whitespace-normal sm:whitespace-nowrap"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">Ciudad de México</span></div>
+                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">Los Cabos</span></div>
+                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">Monterrey</span></div>
+                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">Tijuana</span></div>
+                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">Guadalajara</span></div>
+                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">Mazatlán</span></div>
+                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">Cancún</span></div>
+                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">San Diego</span></div>
+                <div className="flex items-center gap-4 whitespace-normal sm:whitespace-nowrap"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">Puerto Vallarta</span></div>
+                <div className="flex items-center gap-4"><span className="text-luxury-white text-base md:text-lg shrink-0">✓</span> <span className="flex-1">Los Ángeles</span></div>
               </div>
 
               <div className="bg-[#0B0B0B] border border-[#D4AF37]/20 border-l-[3px] border-l-[#D4AF37] p-6 lg:p-7 rounded-sm shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-sm mt-4">
