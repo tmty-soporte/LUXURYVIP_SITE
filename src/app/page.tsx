@@ -1,7 +1,13 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
+import { Menu, X } from 'lucide-react';
 import VehicleSlider from '@/components/VehicleSlider';
 
 export default function Home() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <main className="min-h-screen bg-luxury-black text-luxury-white font-sans selection:bg-luxury-gold selection:text-black">
 
@@ -15,7 +21,7 @@ export default function Home() {
       <nav className="fixed w-full z-50 top-4 flex justify-center px-4 md:px-6">
         <div className="w-full max-w-6xl bg-luxury-black/70 backdrop-blur-xl border border-luxury-gold/20 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.8)] px-5 md:px-8 h-[64px] md:h-[70px] flex items-center justify-between transition-all duration-300 hover:border-luxury-gold/40">
 
-          <a href="#inicio" className="relative h-[42px] w-[150px] md:h-[50px] md:w-[200px] shrink-0 flex items-center">
+          <a href="#inicio" className="relative h-[42px] w-[130px] sm:w-[150px] md:h-[50px] md:w-[200px] shrink-0 flex items-center">
             <Image
               src="/logo_v2.png"
               alt="Luxury VIP Protection Logo"
@@ -55,13 +61,49 @@ export default function Home() {
             <a href="https://wa.me/526623538274?text=Hola,%20me%20interesa%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener noreferrer" className="px-5 py-2 bg-gradient-to-r from-luxury-gold to-[#a88231] hover:from-luxury-gold-soft hover:to-luxury-gold text-black text-[12px] tracking-[0.18em] uppercase font-bold transition-all duration-300 rounded-full flex items-center gap-2 shadow-[0_4px_15px_rgba(204,167,80,0.3)] hover:shadow-[0_4px_25px_rgba(204,167,80,0.5)]">
 
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967..." />
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
               </svg>
 
               <span>+52 662 353 8274</span>
             </a>
           </div>
 
+          {/* Mobile Right Controls (Language & Hamburger) */}
+          <div className="flex lg:hidden items-center gap-4">
+            <a href="/en" className="text-[11px] font-semibold text-luxury-white hover:text-luxury-gold uppercase border border-luxury-gold/30 hover:border-luxury-gold/80 rounded-full px-2.5 py-1 flex items-center justify-center transition-all">
+              EN
+            </a>
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="text-luxury-white hover:text-luxury-gold transition-colors focus:outline-none p-1"
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
+
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div className={`fixed inset-0 top-[85px] bg-luxury-black/95 backdrop-blur-2xl z-40 lg:hidden transition-all duration-300 flex flex-col items-center justify-start pt-12 gap-8 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+          <a href="#inicio" onClick={() => setIsMobileMenuOpen(false)} className="text-[20px] tracking-[0.2em] font-light text-luxury-white hover:text-luxury-gold uppercase transition-colors">
+            Inicio
+          </a>
+          <a href="#servicios" onClick={() => setIsMobileMenuOpen(false)} className="text-[20px] tracking-[0.2em] font-light text-luxury-white hover:text-luxury-gold uppercase transition-colors">
+            Servicios
+          </a>
+          <a href="#flota" onClick={() => setIsMobileMenuOpen(false)} className="text-[20px] tracking-[0.2em] font-light text-luxury-white hover:text-luxury-gold uppercase transition-colors">
+            Flota
+          </a>
+          <a href="#contacto" onClick={() => setIsMobileMenuOpen(false)} className="text-[20px] tracking-[0.2em] font-light text-luxury-white hover:text-luxury-gold uppercase transition-colors">
+            Contacto
+          </a>
+          
+          <div className="w-16 h-px bg-luxury-gold/30 my-4"></div>
+          
+          <a href="/en" className="text-[14px] tracking-[0.2em] font-semibold text-luxury-gold uppercase border border-luxury-gold/50 rounded-full px-8 py-3 flex items-center justify-center hover:bg-luxury-gold hover:text-black transition-all shadow-[0_0_15px_rgba(204,167,80,0.15)]">
+            Cambiar a Inglés (EN)
+          </a>
         </div>
       </nav>
 
@@ -453,7 +495,7 @@ export default function Home() {
                 <div className="relative w-24 h-24 md:w-28 md:h-28 rounded-full overflow-hidden border border-luxury-gold/30 shrink-0 shadow-[0_5px_20px_rgba(204,167,80,0.1)]">
                   <Image
                     src="/profile-new.jpg"
-                    alt="Beatriz Mirazo - Relaciones Públicas"
+                    alt="Beatriz Mirazo - Relaciones Públicas}"
                     fill
                     className="object-cover"
                   />
@@ -467,7 +509,7 @@ export default function Home() {
                     </span>
 
                     <span className="text-luxury-gray text-[18px] md:text-[19px] tracking-[0.15em] mb-2 normal-case font-medium">
-                      Relaciones Públicas
+                      Directora de Alianzas Estratégicas y Operaciones
                     </span>
 
                     <a

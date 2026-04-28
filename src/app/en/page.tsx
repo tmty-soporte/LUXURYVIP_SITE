@@ -1,7 +1,13 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
+import { Menu, X } from 'lucide-react';
 import VehicleSlider from '@/components/VehicleSlider';
 
 export default function Home() {
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
     return (
         <main className="min-h-screen bg-luxury-black text-luxury-white font-sans selection:bg-luxury-gold selection:text-black">
 
@@ -12,10 +18,10 @@ export default function Home() {
             </div>
 
             {/* NAVBAR */}
-            <nav className="fixed w-full z-50 top-4 or top-6 flex justify-center px-4 md:px-8">
-                <div className="w-full max-w-6xl bg-luxury-black/70 backdrop-blur-xl border border-luxury-gold/20 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.8)] px-6 md:px-10 h-[85px] md:h-[95px] flex items-center justify-between transition-all duration-300 hover:border-luxury-gold/40">
+            <nav className="fixed w-full z-50 top-4 flex justify-center px-4 md:px-8">
+                <div className="w-full max-w-6xl bg-luxury-black/70 backdrop-blur-xl border border-luxury-gold/20 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.8)] px-5 md:px-10 h-[64px] md:h-[95px] flex items-center justify-between transition-all duration-300 hover:border-luxury-gold/40">
 
-                    <a href="#inicio" className="relative h-[56px] w-[180px] md:h-[72px] md:w-[260px] shrink-0 transition-opacity hover:opacity-90 flex items-center">
+                    <a href="#inicio" className="relative h-[42px] w-[130px] sm:w-[150px] md:h-[72px] md:w-[260px] shrink-0 transition-opacity hover:opacity-90 flex items-center">
                         <Image
                             src="/logo_v2.png"
                             alt="Luxury VIP Protection Logo"
@@ -53,6 +59,43 @@ export default function Home() {
                             <span>+52 662 353 8274</span>
                         </a>
                     </div>
+
+                    {/* Mobile Right Controls (Language & Hamburger) */}
+                    <div className="flex lg:hidden items-center gap-4">
+                        <a href="/" className="text-[11px] font-semibold text-luxury-white hover:text-luxury-gold uppercase border border-luxury-gold/30 hover:border-luxury-gold/80 rounded-full px-2.5 py-1 flex items-center justify-center transition-all">
+                            ES
+                        </a>
+                        <button 
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            className="text-luxury-white hover:text-luxury-gold transition-colors focus:outline-none p-1"
+                            aria-label="Toggle menu"
+                        >
+                            {isMobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+                        </button>
+                    </div>
+
+                </div>
+
+                {/* Mobile Menu Overlay */}
+                <div className={`fixed inset-0 top-[85px] bg-luxury-black/95 backdrop-blur-2xl z-40 lg:hidden transition-all duration-300 flex flex-col items-center justify-start pt-12 gap-8 ${isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
+                    <a href="#inicio" onClick={() => setIsMobileMenuOpen(false)} className="text-[20px] tracking-[0.2em] font-light text-luxury-white hover:text-luxury-gold uppercase transition-colors">
+                        Home
+                    </a>
+                    <a href="#servicios" onClick={() => setIsMobileMenuOpen(false)} className="text-[20px] tracking-[0.2em] font-light text-luxury-white hover:text-luxury-gold uppercase transition-colors">
+                        Services
+                    </a>
+                    <a href="#flota" onClick={() => setIsMobileMenuOpen(false)} className="text-[20px] tracking-[0.2em] font-light text-luxury-white hover:text-luxury-gold uppercase transition-colors">
+                        Fleet
+                    </a>
+                    <a href="#contacto" onClick={() => setIsMobileMenuOpen(false)} className="text-[20px] tracking-[0.2em] font-light text-luxury-white hover:text-luxury-gold uppercase transition-colors">
+                        Contact
+                    </a>
+                    
+                    <div className="w-16 h-px bg-luxury-gold/30 my-4"></div>
+                    
+                    <a href="/" className="text-[14px] tracking-[0.2em] font-semibold text-luxury-gold uppercase border border-luxury-gold/50 rounded-full px-8 py-3 flex items-center justify-center hover:bg-luxury-gold hover:text-black transition-all shadow-[0_0_15px_rgba(204,167,80,0.15)]">
+                        Switch to Spanish (ES)
+                    </a>
                 </div>
             </nav>
 
@@ -390,26 +433,30 @@ export default function Home() {
                                 </div>
 
                                 <div className="space-y-6 text-[10px] tracking-[0.15em] font-bold uppercase w-full">
-                                    <div className="flex flex-row items-center gap-6 md:gap-8">
-                                        <div className="flex flex-col gap-1">
-                                            <span className="text-luxury-gray/70 text-[18px] md:text-[20px] font-bold tracking-[0.1em] text-luxury-white">BEATRIZ MIRAZO</span>
-                                            <span className="text-luxury-gray text-[18px] md:text-[19px] tracking-[0.15em] mb-2 normal-case font-medium">Public Relations</span>
-                                            <a href="https://wa.me/526623538274?text=Hello,%20I%20would%20like%20to%20request%20a%20private%20valuation." target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-luxury-gold text-sm md:text-base font-light tracking-[0.2em] hover:text-luxury-white transition-colors w-max group mt-2">
-                                                <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 group-hover:drop-shadow-[0_0_8px_rgba(204,167,80,0.5)] transition-all"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" /></svg>
-                                                <span>+52 662 353 8274</span>
-                                            </a>
-                                            <span className="text-luxury-gray text-[13px] md:text-[14px] tracking-[0.05em] mt-2 normal-case font-light italic">Direct and confidential attention.</span>
-                                        </div>
+                                    <div className="flex flex-col gap-1">
+                                        <span className="text-luxury-gray/70 text-[18px] md:text-[20px] font-bold tracking-[0.1em] text-luxury-white">
+                                            BEATRIZ MIRAZO
+                                        </span>
 
-                                        <div className="relative w-24 h-24 md:w-28 md:h-28 shrink-0 flex items-center justify-center">
-                                            <Image
-                                                src="/qr-uploaded.jpg"
-                                                alt="WhatsApp QR Code"
-                                                fill
-                                                className="object-contain"
-                                                unoptimized
-                                            />
-                                        </div>
+                                        <span className="text-luxury-gray text-[18px] md:text-[19px] tracking-[0.15em] mb-2 normal-case font-medium">
+                                            Director of Strategic Alliances and Operations
+                                        </span>
+
+                                        <a
+                                            href="https://wa.me/526623538274?text=Hello,%20I%20would%20like%20to%20request%20a%20private%20valuation."
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex items-center gap-3 text-luxury-gold text-sm md:text-base font-light tracking-[0.2em] hover:text-luxury-white transition-colors w-max group mt-2"
+                                        >
+                                            <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 group-hover:drop-shadow-[0_0_8px_rgba(204,167,80,0.5)] transition-all">
+                                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.888-.788-1.489-1.761-1.663-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.82 9.82 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+                                            </svg>
+                                            <span>+52 662 353 8274</span>
+                                        </a>
+
+                                        <span className="text-luxury-gray text-[13px] md:text-[14px] tracking-[0.05em] mt-2 normal-case font-light italic">
+                                            Direct and confidential attention.
+                                        </span>
                                     </div>
                                 </div>
                             </div>
@@ -423,16 +470,19 @@ export default function Home() {
                         </div>
 
                         {/* Executive Institutional Block */}
-                        <div className="relative z-10 flex flex-col justify-center gap-8 bg-[#1F1F1F] p-10 lg:p-14 border border-luxury-gray/10 rounded-sm h-fit lg:max-w-[95%] lg:justify-self-end self-center shadow-lg">
-                            <h3 className="font-display uppercase font-light text-[28px] md:text-3xl tracking-[0.1em] text-luxury-white">
-                                ABSOLUTE CONFIDENTIALITY
+                        <div className="relative z-10 w-full max-w-[720px] self-center rounded-sm border border-luxury-gray/10 bg-[#1F1F1F] p-5 shadow-lg sm:p-6 md:p-8 lg:max-w-[95%] lg:justify-self-end lg:p-10">
+                            <h3 className="font-display text-[17px] font-light uppercase leading-[1.15] tracking-[0.03em] text-luxury-white sm:text-[19px] md:text-[22px] lg:text-[26px]">
+                                ABSOLUTE <br className="sm:hidden" /> CONFIDENTIALITY
                             </h3>
-                            <div className="w-12 h-[1px] bg-luxury-gold/50"></div>
-                            <div className="space-y-4">
-                                <p className="text-[16px] md:text-[18px] text-luxury-gray font-light leading-[1.8em] tracking-[0.05em]">
+
+                            <div className="mt-4 h-[1px] w-12 bg-luxury-gold/50"></div>
+
+                            <div className="mt-4 space-y-4">
+                                <p className="text-[14px] font-light leading-[1.75] tracking-[0.02em] text-luxury-gray sm:text-[15px] md:text-[16px] lg:text-[17px]">
                                     Every request is handled under strict protocols of discretion and strategic security.
                                 </p>
-                                <p className="text-[16px] md:text-[18px] text-luxury-gray font-light leading-[1.8em] tracking-[0.05em]">
+
+                                <p className="text-[14px] font-light leading-[1.75] tracking-[0.02em] text-luxury-gray sm:text-[15px] md:text-[16px] lg:text-[17px]">
                                     Our team coordinates each transfer with executive precision and absolute confidentiality.
                                 </p>
                             </div>
@@ -442,14 +492,17 @@ export default function Home() {
                 </section>
 
                 {/* FULL SCREEN SEPARATOR IMAGE */}
-                <section className="w-full h-screen relative -mx-4 md:-mx-8 lg:-mx-16 xl:-mx-24 w-[calc(100%+2rem)] md:w-[calc(100%+4rem)] lg:w-[calc(100%+8rem)] xl:w-[calc(100%+12rem)]">
-                    <Image
-                        src="/fleet-scene.jpg"
-                        alt="Luxury VIP Protection Fleet Display"
-                        fill
-                        className="object-cover object-center"
-                        priority={false}
-                    />
+                <section className="relative w-full overflow-hidden bg-black">
+                    <div className="relative w-full h-[55vh] sm:h-[65vh] md:h-[75vh] lg:min-h-screen">
+                        <Image
+                            src="/fleet-scene.jpg"
+                            alt="Luxury VIP Protection Fleet Display"
+                            fill
+                            className="object-contain object-center lg:object-cover"
+                            sizes="100vw"
+                            priority={false}
+                        />
+                    </div>
                 </section>
                 {/* FOOTER */}
                 <footer className="py-12 mt-12 border-t border-luxury-gray/10 text-center flex flex-col items-center justify-center gap-6">
