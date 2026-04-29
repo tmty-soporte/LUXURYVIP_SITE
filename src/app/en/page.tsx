@@ -5,8 +5,6 @@ import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import VehicleSlider from '@/components/VehicleSlider';
 
-export const dynamic = "force-static";
-
 export default function Home() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
